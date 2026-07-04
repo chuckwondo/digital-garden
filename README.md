@@ -8,3 +8,4 @@ New here? Start with [How this garden works](content/how-this-garden-works.md) f
 
 - 🌿 [How this garden works](content/how-this-garden-works.md): how these notes are grown, staged, and linked.
 - 🌿 [Correct by Construction](content/correct-by-construction.md): refined types, smart constructors, and where invariants come from. When only *some* values of a type are valid, make the guarantee come from *how the value is built*, not from checking it afterward. (In progress; see its STATUS block.)
+- 🌿 [Python test suite structure](content/python-test-suite-structure.md): where tests live, whether `tests/` is a package, and how to share code across test files, all downstream of your pytest import mode.

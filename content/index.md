@@ -10,3 +10,4 @@ New here? [[How this garden works]] explains the growth stages and how notes con
 
 - 🌿 [[How this garden works]]
 - 🌿 [[Correct by Construction]]
+- 🌿 [[Python test suite structure]]
