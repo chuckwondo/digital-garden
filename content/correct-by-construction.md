@@ -1,4 +1,10 @@
-# Correct by Construction
+---
+title: Correct by Construction
+tags: [architecture, types]
+stage: budding
+planted: 2026-07-03
+tended: 2026-07-04
+---
 
 *Refined types, smart constructors, and where invariants come from.*
 
