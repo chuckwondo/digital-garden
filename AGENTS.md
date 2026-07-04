@@ -50,3 +50,11 @@ This is a **digital** garden: interlinked notes and essays, organized by *idea* 
 - **Plant a note:** create `content/<Title>.md` with frontmatter (`stage: seedling`), write the tagline and body, add liberal `[[links]]`, add a line to the README index, and commit `Plant the garden: <Title>`.
 - **Tend a note:** edit, bump `tended`, advance `stage` when earned, update the README hook if it changed, and commit `Tend the garden: <Title>`.
 - **Structural changes** (Quartz config, new folders) go in their own commit, separate from note content.
+
+## Backlog
+
+Deferred and queued work. Once this repo has a GitHub remote, migrate these to GitHub issues and point here to them instead.
+
+- **Phase 4: deploy to GitHub Pages.** Create the repo/remote, add the Pages Actions workflow, and resolve the base URL (the `cname` plugin emits a `CNAME` file, which a project page at `chuckwondo.github.io/digital-garden` does not want: disable that plugin or set a custom domain).
+- **Tend [[Correct by Construction]]: body prose retrofit.** Reflow the body to soft-wrap and replace its em-dashes per the Prose conventions. Deliberately deferred as a large, voice-sensitive edit; the frontmatter is already aligned.
+- **Spin off the [[Python test suite structure]] hub.** Its five Related wikilinks are dangling planting markers (`pytest import modes`, `src layout`, `sharing code between test files`, `tests as a package or not`, `pytest fixtures vs helper functions`). Plant each as its own note when it has enough real content, not as an empty stub.
