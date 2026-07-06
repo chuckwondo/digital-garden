@@ -63,9 +63,9 @@ Diagrams are hand-built, so they read as one system and stay in step with the th
 
 ## Backlog
 
-Deferred and queued work. Once this repo has a GitHub remote, migrate these to GitHub issues and point here to them instead.
+Deferred and queued work. The repo now has a GitHub remote, so consider migrating these to GitHub issues and pointing here to them instead.
 
-- **Phase 4: deploy to GitHub Pages.** Create the repo/remote, add the Pages Actions workflow, and resolve the base URL (the `cname` plugin emits a `CNAME` file, which a project page at `chuckwondo.github.io/digital-garden` does not want: disable that plugin or set a custom domain).
-- **Re-enable or replace `og-image` at deploy.** It is disabled because it renders social share-card PNGs with a fetchable font, which is incompatible with the site's local system Palatino (no webfont). At deploy: either leave it off, or give og-image its own build-time serif used only for the PNGs (readers never load it).
+- **Deployed to GitHub Pages** at <https://chuckwondo.github.io/digital-garden/> via `.github/workflows/deploy.yml`. Notes: the `cname` plugin is disabled (a project page under `/digital-garden` must not emit a `CNAME`); CI installs plugins with `npx quartz plugin install` (the `npm run install-plugins` tsx loader can't load the config's transitive `.scss`); the workflow pins node 22.16 via `.node-version` so `engine-strict` is satisfied. Asset paths are relative, so the subpath serves correctly.
+- **Re-enable or replace `og-image`.** It is disabled because it renders social share-card PNGs with a fetchable font, incompatible with the site's local system Palatino (no webfont). To restore share cards, give og-image its own build-time serif used only for the PNGs (readers never load it); otherwise leave it off.
 - **Tend [[Correct by Construction]]: body prose retrofit.** Reflow the body to soft-wrap and replace its em-dashes per the Prose conventions. Deliberately deferred as a large, voice-sensitive edit; the frontmatter is already aligned.
 - **Spin off the [[Python test suite structure]] hub.** Its five Related wikilinks are dangling planting markers (`pytest import modes`, `src layout`, `sharing code between test files`, `tests as a package or not`, `pytest fixtures vs helper functions`). Plant each as its own note when it has enough real content, not as an empty stub.
