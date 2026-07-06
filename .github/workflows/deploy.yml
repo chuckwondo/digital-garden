@@ -34,7 +34,10 @@ jobs:
         run: npm ci
 
       - name: Install Quartz community plugins
-        run: npm run install-plugins # populates .quartz/ (gitignored), required before build
+        # Use the Quartz CLI (esbuild-based, handles the config's .scss imports and reads
+        # quartz.lock.json) rather than `npm run install-plugins`, whose raw tsx run
+        # can't load .scss. Populates .quartz/ (gitignored), required before build.
+        run: npx quartz plugin install
 
       - name: Build site
         run: npx quartz build
