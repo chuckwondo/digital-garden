@@ -116,7 +116,7 @@ figure.diagram {
 // concept runs at the equivalent of ~19px. Match it so the live site isn't ~20%
 // smaller than the design. No !important needed here (no artifact runtime to fight).
 html {
-  font-size: 137.5%; // 22px from a 16px default -- generous, reading-first
+  font-size: 125%; // 20px from a 16px default -- generous, reading-first
 }
 
 // the drafting-table ground: a faint woven / grid texture behind everything
@@ -126,19 +126,19 @@ body {
     repeating-linear-gradient(90deg, var(--weave) 0 1px, transparent 1px 6px);
 }
 
-// a gold lotus hung in the LEFT MARGIN of each note's title, so the title text
-// and the meta/body below it share a single left edge (the lotus is outside it)
+// a gold lotus to the LEFT of the note title: the title is indented to make room,
+// so only the heading sits to the lotus's right -- the meta and body run full width
 .article-title {
   position: relative;
   font-size: 2rem;
+  padding-left: 3.3rem;
 }
 .article-title::before {
   content: "";
   position: absolute;
-  right: 100%;
+  left: 0;
   top: 50%;
   transform: translateY(-50%);
-  margin-right: 0.45rem;
   width: 2.5rem;
   height: 1.55rem;
   background: var(--gold);
@@ -164,22 +164,32 @@ article h3 {
   word-break: normal;
 }
 
-// Desktop/tablet: a left margin on the content column so the marginal lotus has a
-// gutter that clears the sidebar (the grid otherwise butts content against it).
-@media (min-width: 800px) {
-  .center {
-    box-sizing: border-box; // padding eats into the column, doesn't widen it into the right sidebar
-    padding-left: 3.4rem;
-  }
+// ── Explorer: separate the entries clearly, and hang-indent wrapped titles ──
+// (client-rendered file links; wrapped titles otherwise read as separate items)
+.explorer-ul li {
+  margin: 0.35rem 0;
 }
-// Mobile: no room for a margin, so the lotus sits above the title instead.
-@media (max-width: 800px) {
-  .article-title::before {
-    position: static;
-    transform: none;
-    display: block;
-    margin: 0 0 0.35rem;
-  }
+.explorer-ul li a {
+  display: block;
+  line-height: 1.3;
+  padding-left: 1.1em;
+  text-indent: -1.1em; // wrapped lines indent under the first, so one title reads as one entry
+}
+
+// ── Table of contents: show it in full, not a cramped scroll box, and legibly ──
+.toc {
+  overflow-y: visible;
+  flex: none;
+}
+.toc-content.overflow {
+  max-height: none;
+  overflow: visible;
+}
+.toc-content.overflow > li > a {
+  opacity: 0.8; // Quartz dims these to 0.35 by default -- too faint to read
+}
+.toc-content.overflow > li > a.in-view {
+  opacity: 1;
 }
 
 // a malachite catenary under each section head, echoing the diagram arcs
