@@ -95,3 +95,103 @@ figure.diagram {
     dominant-baseline: central;
   }
 }
+
+// ─────────────────────────────────────────────────────────────────────────
+//  Craftsman Herbarium — Stage 2: signature motifs
+//  A woven ground (the drafting table), a gold lotus crowning each note title
+//  (the identity mark, once per page), and a malachite catenary under each
+//  section head (Gaudí form-finding as the structural divider). Motifs are
+//  colour-from-token shape masks, so they re-theme with everything else.
+// ─────────────────────────────────────────────────────────────────────────
+:root {
+  --weave: rgba(35, 38, 16, 0.05);
+  --lotus-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 14'%3E%3Cpath d='M12 1 C13.4 5 13.4 8.5 12 12 C10.6 8.5 10.6 5 12 1 Z M12 12 C9.2 10.4 7.2 7.6 6.6 4.2 C9.4 5.2 11 8.4 12 12 Z M12 12 C14.8 10.4 16.8 7.6 17.4 4.2 C14.6 5.2 13 8.4 12 12 Z M12 12 C8.4 11 4.8 9.2 2.6 6.4 C6 6.6 10 8.8 12 12 Z M12 12 C15.6 11 19.2 9.2 21.4 6.4 C18 6.6 14 8.8 12 12 Z' fill='black'/%3E%3C/svg%3E");
+  --catenary-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 8' preserveAspectRatio='none'%3E%3Cpath d='M0 1.1 L10 3 L20 4.55 L30 5.63 L40 6.28 L50 6.5 L60 6.28 L70 5.63 L80 4.55 L90 3 L100 1.1' fill='none' stroke='black' stroke-width='1.2'/%3E%3C/svg%3E");
+}
+:root[saved-theme="dark"] {
+  --weave: rgba(231, 232, 205, 0.04);
+}
+
+// Base scale: Quartz sets no root font-size (defaults to 16px), but the approved
+// concept runs at the equivalent of ~19px. Match it so the live site isn't ~20%
+// smaller than the design. No !important needed here (no artifact runtime to fight).
+html {
+  font-size: 137.5%; // 22px from a 16px default -- generous, reading-first
+}
+
+// the drafting-table ground: a faint woven / grid texture behind everything
+body {
+  background-image:
+    repeating-linear-gradient(0deg, var(--weave) 0 1px, transparent 1px 6px),
+    repeating-linear-gradient(90deg, var(--weave) 0 1px, transparent 1px 6px);
+}
+
+// a gold lotus hung in the LEFT MARGIN of each note's title, so the title text
+// and the meta/body below it share a single left edge (the lotus is outside it)
+.article-title {
+  position: relative;
+  font-size: 2rem;
+}
+.article-title::before {
+  content: "";
+  position: absolute;
+  right: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+  margin-right: 0.45rem;
+  width: 2.5rem;
+  height: 1.55rem;
+  background: var(--gold);
+  -webkit-mask: var(--lotus-mask) left center / contain no-repeat;
+  mask: var(--lotus-mask) left center / contain no-repeat;
+}
+
+// a touch more air and heading presence in the reading column (toward the concept)
+article p,
+article li {
+  line-height: 1.72;
+}
+article h2 {
+  font-size: 1.55rem;
+}
+article h3 {
+  font-size: 1.24rem;
+}
+
+// the large base can force the narrow sidebar title to break mid-word; keep it whole
+.page-title a {
+  overflow-wrap: normal;
+  word-break: normal;
+}
+
+// Desktop/tablet: a left margin on the content column so the marginal lotus has a
+// gutter that clears the sidebar (the grid otherwise butts content against it).
+@media (min-width: 800px) {
+  .center {
+    box-sizing: border-box; // padding eats into the column, doesn't widen it into the right sidebar
+    padding-left: 3.4rem;
+  }
+}
+// Mobile: no room for a margin, so the lotus sits above the title instead.
+@media (max-width: 800px) {
+  .article-title::before {
+    position: static;
+    transform: none;
+    display: block;
+    margin: 0 0 0.35rem;
+  }
+}
+
+// a malachite catenary under each section head, echoing the diagram arcs
+article h2::after {
+  content: "";
+  display: block;
+  width: 9rem;
+  max-width: 55%;
+  height: 8px;
+  margin-top: 0.45rem;
+  background: var(--malachite);
+  opacity: 0.9;
+  -webkit-mask: var(--catenary-mask) left center / 100% 100% no-repeat;
+  mask: var(--catenary-mask) left center / 100% 100% no-repeat;
+}
