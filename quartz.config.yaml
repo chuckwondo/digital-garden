@@ -124,8 +124,10 @@ plugins:
   # leave off, or give og-image its own build-time serif just for share cards.
   - source: github:quartz-community/og-image
     enabled: false
+  # Disabled: a project page at chuckwondo.github.io/digital-garden must NOT emit
+  # a CNAME file (that would misconfigure Pages as an apex custom domain).
   - source: github:quartz-community/cname
-    enabled: true
+    enabled: false
   - source: github:quartz-community/canvas-page
     enabled: true
   - source: github:quartz-community/content-page
