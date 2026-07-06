@@ -164,19 +164,44 @@ article h3 {
   word-break: normal;
 }
 
-// ── Explorer: separate the entries clearly, and hang-indent wrapped titles ──
-// (client-rendered file links; wrapped titles otherwise read as separate items)
+// ── Navigation chrome (Explorer, TOC): the mono "index" voice ──
+// Set the nav in the mono -- the same instrument font as dates/tags/captions --
+// so it reads as the garden's index, distinct from the serif reading content.
+// Section labels ("Explorer"/"Table of Contents") become small mono eyebrows.
+
+// Explorer: label + entries, entries hung so a wrapped title reads as one item
+.explorer .explorer-toggle,
+.explorer .desktop-explorer {
+  font-family: var(--mono);
+  font-weight: 400;
+  font-size: 0.74rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gray);
+}
 .explorer-ul li {
   margin: 0.35rem 0;
 }
 .explorer-ul li a {
+  font-family: var(--mono);
+  font-weight: 400;
+  font-size: 0.82rem;
+  letter-spacing: 0.01em;
   display: block;
-  line-height: 1.3;
+  line-height: 1.35;
   padding-left: 1.1em;
-  text-indent: -1.1em; // wrapped lines indent under the first, so one title reads as one entry
+  text-indent: -1.1em; // wrapped lines indent under the first
 }
 
-// ── Table of contents: show it in full, not a cramped scroll box, and legibly ──
+// Table of contents: mono index, shown in full (no scroll box) and legibly
+.toc-header h3 {
+  font-family: var(--mono);
+  font-weight: 400;
+  font-size: 0.74rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gray);
+}
 .toc {
   overflow-y: visible;
   flex: none;
@@ -185,11 +210,37 @@ article h3 {
   max-height: none;
   overflow: visible;
 }
+.toc-content a {
+  font-family: var(--mono);
+  font-weight: 400;
+  font-size: 0.82rem;
+  letter-spacing: 0.01em;
+}
 .toc-content.overflow > li > a {
   opacity: 0.8; // Quartz dims these to 0.35 by default -- too faint to read
 }
 .toc-content.overflow > li > a.in-view {
   opacity: 1;
+}
+
+// Backlinks: same mono index voice, shown in full (it had the same scroll box)
+.backlinks > h3 {
+  font-family: var(--mono);
+  font-weight: 400;
+  font-size: 0.74rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gray);
+}
+.backlinks > ul.overflow {
+  max-height: none;
+  overflow: visible;
+}
+.backlinks a {
+  font-family: var(--mono);
+  font-weight: 400;
+  font-size: 0.82rem;
+  letter-spacing: 0.01em;
 }
 
 // a malachite catenary under each section head, echoing the diagram arcs
