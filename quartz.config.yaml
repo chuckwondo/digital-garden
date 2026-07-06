@@ -13,33 +13,39 @@ configuration:
     - templates
     - .obsidian
   theme:
-    fontOrigin: googleFonts
+    # Palatino serif + system mono; local so no Google fonts load (the concept's
+    # zero-webfont ethos). Full fallback stacks are pinned in custom.scss, because
+    # Quartz otherwise appends a *sans* fallback to these names.
+    fontOrigin: local
     cdnCaching: true
     typography:
-      header: Schibsted Grotesk
-      body: Source Sans Pro
-      code: IBM Plex Mono
+      header: Palatino
+      body: Palatino
+      code: monospace
+    # "Craftsman Herbarium" palette: FLW earthen olive-sage ground, oak-bister ink,
+    # thangka lapis links + a gold text-marker. Maps the approved v9 concept onto
+    # Quartz's 9 tokens. See the garden's visual-identity notes.
     colors:
       lightMode:
-        light: "#faf8f8"
-        lightgray: "#e5e5e5"
-        gray: "#b8b8b8"
-        darkgray: "#4e4e4e"
-        dark: "#2b2b2b"
-        secondary: "#284b63"
-        tertiary: "#84a59d"
-        highlight: rgba(143, 159, 169, 0.15)
-        textHighlight: "#fff23688"
+        light: "#d3d8ad"        # sage-canvas ground (page background)
+        lightgray: "#bcc189"    # keyline: borders, hr, code-panel ground
+        gray: "#5d6440"         # olive-taupe: muted metadata
+        darkgray: "#2b3016"     # oak-bister: body text
+        dark: "#1f2310"         # deepest olive-oak: headings, strong
+        secondary: "#294f95"    # thangka lapis: links, accents
+        tertiary: "#6e8248"     # budding sage: link hover, graph nodes
+        highlight: "rgba(59, 74, 44, 0.12)"   # evergreen wash: internal-link / code bg
+        textHighlight: "#bd942a55"             # thangka gold: text marker
       darkMode:
-        light: "#161618"
-        lightgray: "#393639"
-        gray: "#646464"
-        darkgray: "#d4d4d4"
-        dark: "#ebebec"
-        secondary: "#7b97aa"
-        tertiary: "#84a59d"
-        highlight: rgba(143, 159, 169, 0.15)
-        textHighlight: "#b3aa0288"
+        light: "#13160c"        # deep forest-olive ground
+        lightgray: "#303522"    # borders, hr
+        gray: "#9aa07d"         # muted
+        darkgray: "#dfe1c2"     # warm parchment: body text
+        dark: "#e7e8cd"         # headings
+        secondary: "#85a6e0"    # lapis, lightened for dark
+        tertiary: "#97a868"     # budding, lightened
+        highlight: "rgba(231, 232, 205, 0.08)"
+        textHighlight: "#dcb85a55"
 plugins:
   - source: github:quartz-community/created-modified-date
     enabled: true
@@ -113,8 +119,11 @@ plugins:
       enableRSS: true
   - source: github:quartz-community/favicon
     enabled: true
+  # Disabled: og-image renders share-card PNGs with a fetchable font, but the
+  # site now uses local system Palatino (no webfont). Revisit at deploy: either
+  # leave off, or give og-image its own build-time serif just for share cards.
   - source: github:quartz-community/og-image
-    enabled: true
+    enabled: false
   - source: github:quartz-community/cname
     enabled: true
   - source: github:quartz-community/canvas-page

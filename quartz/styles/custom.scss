@@ -1,3 +1,97 @@
 @use "./variables.scss" as *;
 
-// put your custom CSS here!
+// ─────────────────────────────────────────────────────────────────────────
+//  Craftsman Herbarium — Stage 1: type
+//  Palette lives in quartz.config.yaml (the 9 theme tokens). Here we pin the
+//  type: a warm Palatino serif with a sturdy serif floor (Iowan → Georgia),
+//  and a system monospace. Quartz builds --bodyFont etc. with a *sans*
+//  fallback, so we override the vars outright to keep the fallback a serif.
+// ─────────────────────────────────────────────────────────────────────────
+
+// !important: Quartz emits its own :root font block *after* this file, with a
+// sans fallback. Without !important its stack wins the cascade and non-macOS
+// visitors (no Palatino) drop to sans. !important is valid on custom-property
+// declarations and keeps the serif floor (Iowan → Georgia) intact everywhere.
+:root {
+  --titleFont:  "Palatino Linotype", Palatino, "Book Antiqua", "Iowan Old Style", "Hoefler Text", Georgia, "Times New Roman", serif !important;
+  --headerFont: "Palatino Linotype", Palatino, "Book Antiqua", "Iowan Old Style", "Hoefler Text", Georgia, "Times New Roman", serif !important;
+  --bodyFont:   "Palatino Linotype", Palatino, "Book Antiqua", "Iowan Old Style", "Hoefler Text", Georgia, "Times New Roman", serif !important;
+  --codeFont:   ui-monospace, "SF Mono", "Menlo", "Cascadia Code", "DejaVu Sans Mono", "Roboto Mono", monospace !important;
+}
+
+// ─────────────────────────────────────────────────────────────────────────
+//  Extended palette — the herbarium's named pigments, beyond Quartz's 9 tokens.
+//  Exposed as CSS variables so hand-built SVG diagrams (and future motifs) can
+//  reference them and re-theme automatically on [saved-theme="dark"].
+//  The maturity ramp (seedling→evergreen) doubles as the garden's stage colors.
+// ─────────────────────────────────────────────────────────────────────────
+:root {
+  --seedling: #9fa845;  --budding: #6e8248;  --evergreen: #3b4a2c;  --seed: #9aa075;
+  --gold: #bd942a;      --lapis: #294f95;    --malachite: #16795c;
+  --cinnabar: #a83c28;  --clay: #7e4632;     --copper: #b07a3c;
+}
+:root[saved-theme="dark"] {
+  --seedling: #c4cb68;  --budding: #97a868;  --evergreen: #6f8556;  --seed: #6e6250;
+  --gold: #dcb85a;      --lapis: #85a6e0;    --malachite: #52c79a;
+  --cinnabar: #e0674c;  --clay: #c06a4b;     --copper: #cf9a5a;
+}
+
+// ─────────────────────────────────────────────────────────────────────────
+//  Diagram kit — one grammar for every hand-built figure.
+//  Rule: diagrams reference tokens only (never raw hex), so they stay in
+//  lockstep with the palette in both themes. Roles: ink/muted = structure,
+//  --secondary (lapis) = the subject, greens = the maturity ramp, --gold =
+//  annotation, --cinnabar = attention. Caption is a mono "plate" label.
+// ─────────────────────────────────────────────────────────────────────────
+figure.diagram {
+  margin: 2rem auto;
+  max-width: 460px;
+  text-align: center;
+
+  svg {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  figcaption {
+    font-family: var(--codeFont);
+    font-size: 0.8rem;
+    letter-spacing: 0.06em;
+    color: var(--gray);
+    margin-top: 0.7rem;
+  }
+}
+
+// Fibonacci-spiral figure
+.diagram-fib {
+  .sq {
+    stroke: var(--lightgray);
+    stroke-width: 1;
+  }
+  .t-seedling  { fill: color-mix(in srgb, var(--seedling) 24%, transparent); }
+  .t-budding   { fill: color-mix(in srgb, var(--budding) 22%, transparent); }
+  .t-evergreen { fill: color-mix(in srgb, var(--evergreen) 20%, transparent); }
+
+  .spiral {
+    fill: none;
+    stroke: var(--secondary);
+    stroke-width: 2.4;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  .fib-num {
+    fill: var(--dark);
+    font-family: var(--codeFont);
+    font-variant-numeric: tabular-nums;
+    text-anchor: middle;
+    dominant-baseline: central;
+  }
+  .phi {
+    fill: var(--gold);
+    font-family: var(--codeFont);
+    font-size: 20px;
+    text-anchor: middle;
+    dominant-baseline: central;
+  }
+}
