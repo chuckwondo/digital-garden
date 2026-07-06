@@ -138,6 +138,16 @@ plugins:
     enabled: true
   - source: github:quartz-community/explorer
     enabled: true
+    # Pin the orientation note first, then the default alphabetical order. The
+    # sortFn is serialized to the client and eval'd, so a string works here.
+    options:
+      sortFn: |
+        (a, b) => {
+          const A = a.displayName || "", B = b.displayName || "";
+          if (A === "How this garden works") return -1;
+          if (B === "How this garden works") return 1;
+          return A.localeCompare(B, undefined, { numeric: true, sensitivity: "base" });
+        }
     layout:
       position: left
       priority: 50

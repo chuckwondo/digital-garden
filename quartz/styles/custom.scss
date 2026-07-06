@@ -202,13 +202,18 @@ article h3 {
   text-transform: uppercase;
   color: var(--gray);
 }
+// Show the TOC in full (no scroll box) when expanded: size .toc to its content.
 .toc {
-  overflow-y: visible;
   flex: none;
 }
 .toc-content.overflow {
   max-height: none;
-  overflow: visible;
+}
+// ...but keep collapse working: the script adds .collapsed to the content list;
+// hide it directly (higher specificity than our max-height:none above).
+.toc-content.overflow.collapsed {
+  max-height: 0;
+  overflow: hidden;
 }
 .toc-content a {
   font-family: var(--codeFont);
