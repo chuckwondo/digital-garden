@@ -45,6 +45,16 @@ This is a **digital** garden: interlinked notes and essays, organized by *idea* 
 - **Prefer a colon, parentheses, a comma, or splitting into shorter sentences over an em-dash.** If a dash is genuinely the right punctuation, use `--`, never the Unicode em-dash character.
 - **`e.g.` and `i.e.` are always followed by a comma.**
 
+## Diagrams
+
+Diagrams are hand-built, so they read as one system and stay in step with the theme.
+
+- **Inline SVG in the note.** Author diagrams as inline `<svg>` in the Markdown (Quartz passes it through). Inline is required: only SVG in the DOM can read the theme; an `<img>`-referenced SVG is isolated and cannot re-theme.
+- **Tokens, never raw hex.** Colour every element with the palette variables (`var(--secondary)`, `var(--dark)`, `var(--gold)`, the maturity greens, ...) so the figure re-themes light/dark automatically. A hardcoded hex freezes a diagram to one theme and drifts from the palette.
+- **Palette roles:** ink/muted (`--dark` / `--gray`) for axes and structure; **lapis** (`--secondary`) for the subject under discussion; **malachite / sage greens** for a secondary thread or the maturity ramp; **cinnabar / clay** for attention or error; **gold** for annotation. The same roles the prose uses.
+- **One grammar.** Wrap figures in `<figure class="diagram">` (plus a per-figure class) to inherit the shared kit in `quartz/styles/custom.scss`: sizing, a mono tabular label style, and a plate-style `figcaption` ("Pl. I &middot; ..."). The extended pigment tokens live there too.
+- **Construct the geometry.** Compute real coordinates with a small script (golden ratio / Fibonacci / catenary / iconometric proportion) rather than eyeballing curves, and keep the generator as the check that the math closes.
+
 ## Workflow
 
 - **Plant a note:** create `content/<Title>.md` with frontmatter (`stage: seedling`), write the tagline and body, add liberal `[[links]]`, add a line to the README index, and commit `Plant the garden: <Title>`.
@@ -56,5 +66,6 @@ This is a **digital** garden: interlinked notes and essays, organized by *idea* 
 Deferred and queued work. Once this repo has a GitHub remote, migrate these to GitHub issues and point here to them instead.
 
 - **Phase 4: deploy to GitHub Pages.** Create the repo/remote, add the Pages Actions workflow, and resolve the base URL (the `cname` plugin emits a `CNAME` file, which a project page at `chuckwondo.github.io/digital-garden` does not want: disable that plugin or set a custom domain).
+- **Re-enable or replace `og-image` at deploy.** It is disabled because it renders social share-card PNGs with a fetchable font, which is incompatible with the site's local system Palatino (no webfont). At deploy: either leave it off, or give og-image its own build-time serif used only for the PNGs (readers never load it).
 - **Tend [[Correct by Construction]]: body prose retrofit.** Reflow the body to soft-wrap and replace its em-dashes per the Prose conventions. Deliberately deferred as a large, voice-sensitive edit; the frontmatter is already aligned.
 - **Spin off the [[Python test suite structure]] hub.** Its five Related wikilinks are dangling planting markers (`pytest import modes`, `src layout`, `sharing code between test files`, `tests as a package or not`, `pytest fixtures vs helper functions`). Plant each as its own note when it has enough real content, not as an empty stub.
