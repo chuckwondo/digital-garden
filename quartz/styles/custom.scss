@@ -213,8 +213,9 @@ article h3 {
 .toc-content a {
   font-family: var(--codeFont);
   font-weight: 400;
-  font-size: 0.82rem;
+  font-size: 0.68rem; // smaller than the Explorer (0.82) and the TOC heading (0.74): dense secondary nav
   letter-spacing: 0.01em;
+  line-height: 1.4;
 }
 .toc-content.overflow > li > a {
   opacity: 0.8; // Quartz dims these to 0.35 by default -- too faint to read
