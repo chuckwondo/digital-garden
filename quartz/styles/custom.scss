@@ -215,6 +215,16 @@ article h3 {
   max-height: 0;
   overflow: hidden;
 }
+
+// The right sidebar (TOC + Backlinks) should scroll WITH the page, not be a fixed
+// 100vh sticky column with its own scroll. Drop it out of sticky positioning and
+// let it size to content at the top of its grid area. (Left sidebar stays sticky.)
+.sidebar.right {
+  position: static;
+  height: auto;
+  align-self: start;
+  overflow-y: visible;
+}
 .toc-content a {
   font-family: var(--codeFont);
   font-weight: 400;
