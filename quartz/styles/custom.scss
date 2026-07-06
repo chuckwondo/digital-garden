@@ -17,6 +17,7 @@
   --headerFont: "Palatino Linotype", Palatino, "Book Antiqua", "Iowan Old Style", "Hoefler Text", Georgia, "Times New Roman", serif !important;
   --bodyFont:   "Palatino Linotype", Palatino, "Book Antiqua", "Iowan Old Style", "Hoefler Text", Georgia, "Times New Roman", serif !important;
   --codeFont:   ui-monospace, "SF Mono", "Menlo", "Cascadia Code", "DejaVu Sans Mono", "Roboto Mono", monospace !important;
+  --sans: "Avenir Next", "Segoe UI", system-ui, -apple-system, "Helvetica Neue", sans-serif; // navigation chrome
 }
 
 // ─────────────────────────────────────────────────────────────────────────
@@ -183,9 +184,9 @@ article h3 {
   margin: 0.35rem 0;
 }
 .explorer-ul li a {
-  font-family: var(--mono);
-  font-weight: 400;
-  font-size: 0.82rem;
+  font-family: var(--sans);
+  font-weight: 500;
+  font-size: 0.92rem;
   letter-spacing: 0.01em;
   display: block;
   line-height: 1.35;
@@ -211,9 +212,9 @@ article h3 {
   overflow: visible;
 }
 .toc-content a {
-  font-family: var(--mono);
-  font-weight: 400;
-  font-size: 0.82rem;
+  font-family: var(--sans);
+  font-weight: 500;
+  font-size: 0.92rem;
   letter-spacing: 0.01em;
 }
 .toc-content.overflow > li > a {
@@ -237,9 +238,9 @@ article h3 {
   overflow: visible;
 }
 .backlinks a {
-  font-family: var(--mono);
-  font-weight: 400;
-  font-size: 0.82rem;
+  font-family: var(--sans);
+  font-weight: 500;
+  font-size: 0.92rem;
   letter-spacing: 0.01em;
 }
 
