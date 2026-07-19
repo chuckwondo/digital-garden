@@ -6,11 +6,10 @@ This is a **digital** garden: interlinked notes and essays, organized by *idea* 
 
 ## Tooling and structure
 
-- **Publisher: [Quartz](https://quartz.jzhao.xyz) v4**, a static-site generator built for digital gardens (wikilinks, backlinks, graph, tag pages, search).
+- **Publisher: [Quartz](https://quartz.jzhao.xyz) v4**, a static-site generator built for digital gardens (wikilinks, backlinks, graph, tag pages, search). Chosen deliberately over general-purpose SSGs (which make each garden feature a plugin to maintain) and hosted options (which give up the self-owned static output and custom theme); the rationale lives in the README's "Built with" section.
 - **Author** in plain Markdown with any editor: Foam in VS Code, or Obsidian pointed at the same folder.
 - **Notes live in `content/`**, flat, as `content/<Title>.md`. Add deeper folders only when the link graph actually demands them.
-- **Preview** locally with `npx quartz build --serve`.
-- (The Quartz scaffold is being set up this session; until then the notes sit at the repo root.)
+- **Preview** locally with `npx quartz build --serve` (see the README's "Running locally" section for the human-facing version).
 
 ## Note conventions
 
